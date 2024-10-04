@@ -1,0 +1,31 @@
+<form [formGroup]="userForm" (ngSubmit)="submitData()">
+  <div>
+    <label for="userName">User Name:</label>
+    <input id="userName" formControlName="userName" />
+    <div *ngIf="userForm.get('userName')?.invalid && (userForm.get('userName')?.touched || userForm.get('userName')?.dirty)">
+      <small *ngIf="userForm.get('userName')?.errors?.required">User Name is required.</small>
+    </div>
+  </div>
+
+  <div>
+    <label for="contact">Contact:</label>
+    <input id="contact" formControlName="contact" />
+    <div *ngIf="userForm.get('contact')?.invalid && (userForm.get('contact')?.touched || userForm.get('contact')?.dirty)">
+      <small *ngIf="userForm.get('contact')?.errors?.required">Contact is required.</small>
+      <small *ngIf="userForm.get('contact')?.errors?.pattern">Invalid contact number.</small>
+    </div>
+  </div>
+
+  <div>
+    <label for="selectedSpace">Select Parking Space:</label>
+    <select id="selectedSpace" formControlName="selectedSpace">
+      <option value="">Select a space</option>
+      <option *ngFor="let space of availableSpaces" [value]="space.id">{{ space.name }}</option>
+    </select>
+    <div *ngIf="userForm.get('selectedSpace')?.invalid && (userForm.get('selectedSpace')?.touched || userForm.get('selectedSpace')?.dirty)">
+      <small>Please select a parking space.</small>
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="userForm.invalid">Submit</button>
+</form>
