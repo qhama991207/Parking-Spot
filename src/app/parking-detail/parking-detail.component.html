@@ -1,34 +1,53 @@
 <form [formGroup]="userForm" (submit)="submitUserInformation()">
   <label for="name">Name:</label>
-  <input id="name" type="text" formControlName="fullName" /><br>
+  <br>
+  <input id="name" type="text" formControlName="Name" /><br>
 
-  <br><label for="name">Name:</label>
-  <input id="name" type="text" formControlName="fullName" /><br>
+  <br><label for="name">Surname:</label>
+  <br>
+  <input id="name" type="text" formControlName="Surname" /><br>
+
+  <br><label for="email">Email:</label>
+  <br>
+  <input id="name" type="text" formControlName="Email" /><br>
+
+  <br><label for="car-colour">Car Colour:</label>
+  <br>
+  <input id="name" type="text" formControlName="car-colour" /><br>
   
   <br><label for="contact">Contact:</label>
-  <input id="contact" type="text" formControlName="contact" required>
+  <br>
+  <input id="contact" type="numbers" formControlName="contact" required>
   <div *ngIf="userForm.get('contact')?.invalid && userForm.get('contact')?.touched">
       <small *ngIf="userForm.get('contact')?.errors?.['required']">Contact is required.</small>
       <small *ngIf="userForm.get('contact')?.errors?.['pattern']">Contact must be 10 digits, start with 0, and the second digit cannot be 0.</small>
   </div>
   <div *ngIf="userForm.errors?.['userNotUnique']">
-      <small>Full Name or Contact is already in use.</small><br>
-  </div>
+      <small>Full Name or Contact is already in use.</small>
+  </div><br>
   
   
   <br><label for="carBrand">Car Brand:</label>
-  <input id="carBrand" type="text" formControlName="carBrand" required>
+  <br>
+  <input id="carBrand" type="text" formControlName="carBrand" required><br>
+
+  <br><label for="carBrand">Registration Number:</label>
+  <br>
+  <input id="carBrand" type="text" formControlName="registrationNumber" required><br>
   
-  <label for="selectSpot">Select Spot:</label>
+  
+  <br><label for="selectSpot">Select Spot:</label>
+  <br>
   <select formControlName="selectSpot">
+    <br>
       <option *ngFor="let spot of availableSpots" [value]="spot.name">
         {{ spot.name }}
       </option>
     </select>
     <div *ngIf="userForm.get('selectedSpot')?.invalid && userForm.get('selectedSpot')?.touched">
       <small *ngIf="userForm.get('selectedSpot')?.errors?.['required']">Selecting a spot is required.</small>
-  </div>
-  <button type="submit">Book</button>
+  </div><br>
+  <br><button type="submit">Book</button>
   <!-- <button type="button" (click)="downloadPDF()">
       <i class="fas fa-download"></i>
     </button> -->

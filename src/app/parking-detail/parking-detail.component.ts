@@ -14,12 +14,17 @@ export class ParkingDetailComponent {
   formService = inject(ParkingDetailService);
   parkingService = inject(ParkingListService);
   userForm = new FormGroup({
-    fullName: new FormControl(''),
+    Name: new FormControl(''),
+    Surname: new FormControl(''),
+    Email: new FormControl(''),
+    carColour: new FormControl(''),
+    
     contact: new FormControl('', [
       Validators.required,
       Validators.pattern(/^0[1-9][0-9]{8}$/)
   ]),
     carBrand: new FormControl(''),
+    registrationNumber: new FormControl(''),
     selectSpot: new FormControl('')});
 get availableSpots(): any[] {
     return this.parkingService.availableSpots;
@@ -28,16 +33,24 @@ get availableSpots(): any[] {
     const selectedSpot = this.userForm.value.selectSpot;
     if (selectedSpot) {
       this.formService.submitUserInformation(
-        this.userForm.value.fullName ?? '',
+        this.userForm.value.Name ?? '',
+        this.userForm.value.Surname ?? '',
+        this.userForm.value.Email ?? '',
+        this.userForm.value.carColour ?? '',
         this.userForm.value.contact ?? '',
         this.userForm.value.carBrand ?? '',
+        this.userForm.value.registrationNumber ?? '',
         selectedSpot
       );
       this.parkingService.selectSpot(selectedSpot);
       this.userForm.reset({
-        fullName: '',
+        Name: '',
+        Surname: '',
+        Email: '',
+        carColour: '',
         contact: '',
         carBrand: '',
+        registrationNumber: '',
         selectSpot: ''
       });
     } else {
@@ -47,8 +60,12 @@ get availableSpots(): any[] {
 }
 
 interface User {
-  fullName: string;
+  Name: string;
+  Surname: string;
+  Email: string;
+  carColour: string;
   contact: string;
   carBrand: string;
+  registrationNumber: string;
   selectedSpot: string;
 }
