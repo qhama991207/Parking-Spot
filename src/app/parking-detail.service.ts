@@ -1,12 +1,25 @@
+
 import { Injectable } from '@angular/core';
+import { log } from 'console';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ParkingDetailService {
-  submitData(arg0: string, arg1: string, selectedSpace: never) {
-    throw new Error('Method not implemented.');
-  }
 
   constructor() { }
+  submitUserInformation(fullName: string, contact: string, carBrand: string, selectedSpot: string) {
+    const UserDetails = [{
+      fullName: fullName,
+      contact: contact,
+      carBrand: carBrand,
+      selectedSpot: selectedSpot
+    }];
+  
+    console.log('Full Name:', fullName);
+    console.log('Contact:', contact);
+    console.log('Car Brand:', carBrand);
+    console.log('Selected Spot:', selectedSpot);
+  }
+  
 }

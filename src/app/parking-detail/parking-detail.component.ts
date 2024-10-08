@@ -1,50 +1,54 @@
-import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ParkingDetailService } from '../parking-detail.service';
 import { ParkingListService } from '../parking-list.service';
-
 @Component({
   selector: 'app-parking-detail',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './parking-detail.component.html',
-  styleUrls: ['./parking-detail.component.css'] 
+  styleUrls: ['./parking-detail.component.css']
 })
-
 export class ParkingDetailComponent {
-  parkingDetailService = inject(ParkingDetailService);
-  parkingListService = inject(ParkingListService);
-
+  formService = inject(ParkingDetailService);
+  parkingService = inject(ParkingListService);
   userForm = new FormGroup({
-    userName: new FormControl('', Validators.required), 
+    fullName: new FormControl(''),
     contact: new FormControl('', [
       Validators.required,
       Validators.pattern(/^0[1-9][0-9]{8}$/)
-    ]),
-    selectedSpace: new FormControl(null) 
-  });
-
-  get availableSpaces(): any[] {
-    return this.parkingListService.getAvailableSpaces(); 
+  ]),
+    carBrand: new FormControl(''),
+    selectSpot: new FormControl('')});
+get availableSpots(): any[] {
+    return this.parkingService.availableSpots;
   }
-
-  submitData(): void {
-    const selectedSpace = this.userForm.value.selectedSpace;
-    if (selectedSpace) {
-      this.parkingDetailService.submitData(
-        this.userForm.value.userName ?? '',
+  submitUserInformation() {
+    const selectedSpot = this.userForm.value.selectSpot;
+    if (selectedSpot) {
+      this.formService.submitUserInformation(
+        this.userForm.value.fullName ?? '',
         this.userForm.value.contact ?? '',
-        selectedSpace 
+        this.userForm.value.carBrand ?? '',
+        selectedSpot
       );
-      this.parkingListService.reserveSpace(selectedSpace); 
+      this.parkingService.selectSpot(selectedSpot);
       this.userForm.reset({
-        userName: '',
+        fullName: '',
         contact: '',
-        selectedSpace: null 
+        carBrand: '',
+        selectSpot: ''
       });
-    } else { 
-      console.error('Selected space is undefined or null');
+    } else {
+      console.error('Selected spot is undefined or null');
     }
   }
+}
+
+interface User {
+  fullName: string;
+  contact: string;
+  carBrand: string;
+  selectedSpot: string;
 }

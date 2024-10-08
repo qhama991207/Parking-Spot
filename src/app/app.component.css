@@ -1,0 +1,13 @@
+h1{
+    text-align: center;
+}
+#app-parking-detail{
+    border-radius: 10px;
+}
+#app-parking-list{
+    border-radius: 10px;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+}

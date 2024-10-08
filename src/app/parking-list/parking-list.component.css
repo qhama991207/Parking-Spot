@@ -1,7 +1,29 @@
-button{
-    margin-right: 20px;
-    margin-bottom: 20px;
-    width: 20%;
+.spot-available {
+    margin: 4px;
     background-color: green;
-    border-radius: 5px;
-}
+    display: inline-block;
+ text-decoration: none;
+ width: 19.3%;
+ height: 40px;
+ border-radius: 20px;
+ text-align: center;
+ justify-content: center;
+ align-content: center;
+ justify-items: center;
+ font-weight: bold;
+  }
+  
+  .spot-unavailable {
+    margin: 4px;
+    background-color: red;
+    display: inline-block;
+ text-decoration: none;
+ width: 19.5%;
+ height: 40px;
+ border-radius: 20px;
+ text-align: center;
+ justify-content: center;
+ align-content: center;
+ justify-items: center;
+ font-weight: bold;
+  }

@@ -1,0 +1,12 @@
+label{
+    font-weight: bolder;
+    }
+    input{
+        width: 250px;
+        margin-right: 10px;
+    }
+    button{
+        margin-left: 10px;
+        width: 8%;
+        font-weight: bolder;
+    }
